@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 const REPS_PER_SESSION = 10;
-const REACTION_LIMIT_MS = 500; // 0.5 seconds
+const REACTION_LIMIT_MS = 8000; // 8 seconds
 
 const SCENARIOS = [
-  { id: 1,  prompt: "PnR top. Your defender goes UNDER the screen. You catch with feet set.",
+  { id: 1,  prompt: "Pick and Roll on top. Your defender goes UNDER the screen. You catch with feet set.",
     options: ["Shoot", "Drive", "Pass"], correct: "Shoot", tip: "Under = shoot or re-screen." },
   { id: 2,  prompt: "Wing catch. Strong-side corner is lifted; help steps to charge circle.",
     options: ["Skip Pass", "Floater", "Pull-up"], correct: "Skip Pass", tip: "Help in = skip to corner/weak-side." },
@@ -14,7 +14,7 @@ const SCENARIOS = [
     options: ["Attack Middle", "One-More Pass", "Shoot"], correct: "Shoot", tip: "Bad long closeout = shoot." },
   { id: 5,  prompt: "Post touch. Weak-side defender digs at the bounce.",
     options: ["Kick Out", "Spin Middle", "Up-and-Under"], correct: "Kick Out", tip: "Dig = punish with kick." },
-  { id: 6,  prompt: "PnR side. Big shows hard; roller is open.",
+  { id: 6,  prompt: "Pick and Roll side. Big shows hard; roller is open.",
     options: ["Split", "Hit Roller", "Retreat Dribble"], correct: "Hit Roller", tip: "Show = roller advantage." },
   { id: 7,  prompt: "Baseline drive. Strong-side corner stays; weak-side tags.",
     options: ["Corner Drift Pass", "Floater", "Kick Top"], correct: "Corner Drift Pass", tip: "Baseline drive = drift." },
@@ -167,14 +167,14 @@ export default function App() {
     <div className="card">
       <header>
         <h1>Decision Speed Trainer</h1>
-        <span className="badge">0.5s limit</span>
+        <span className="badge">8s limit</span>
       </header>
 
       <main>
         {view === "intro" && (
           <section id="intro">
             <p>
-              React fast to in-game scenarios. You have <b>0.5 seconds</b> to choose the best action. After {REPS_PER_SESSION} reps, see your speed and accuracy.
+              React fast to in-game scenarios. You have <b>8 seconds</b> to choose the best action. After {REPS_PER_SESSION} reps, see your speed and accuracy.
             </p>
             <div style={{ display: "flex", gap: 10, marginTop: 10 }}>
               <button className="btn primary" onClick={startSession}>Start</button>
@@ -183,7 +183,6 @@ export default function App() {
               </button>
             </div>
             <div className="grid">
-              <div className="stat"><b>Tip:</b> Change <code>REACTION_LIMIT_MS</code> to 800–1000 if 0.5s is too tough.</div>
               <div className="stat">History is saved locally in your browser.</div>
               <div className="stat">Add <code>imgUrl</code> to scenarios to show diagrams/GIFs.</div>
             </div>
